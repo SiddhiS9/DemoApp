@@ -141,6 +141,9 @@ struct WorkoutCameraSheet: View {
                         Text("REPS COMPLETED")
                             .font(.caption.bold())
                             .foregroundStyle(.secondary)
+                        Text(currentReps.movementStatus)
+                            .font(.caption)
+                            .foregroundStyle(Color.movoGreen)
 
                         ProgressView(
                             value: Double(currentReps.reps),
