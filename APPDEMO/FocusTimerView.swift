@@ -1,11 +1,3 @@
-//
-//  FocusTimerView.swift
-//  APPDEMO
-//
-//  Created by Samuel Devassy on 11/16/26.
-//
-
-
 
 import SwiftUI
 
@@ -17,6 +9,7 @@ struct FocusTimerView: View {
     private let durations = [5, 10, 15, 25, 30, 45, 60]
 
     var body: some View {
+
         NavigationStack {
             VStack(spacing: 30) {
 
@@ -51,18 +44,9 @@ struct FocusTimerView: View {
                     Text("Your focus session is over.")
                         .font(.headline)
 
-                    Text("Complete an exercise to start another session.")
+                    Text("Choose an exercise from the Challenges tab to earn more time.")
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
-
-                    Button("Start Exercise") {
-                        NotificationCenter.default.post(
-                            name: Notification.Name("StartMovoExercise"),
-                            object: nil
-                        )
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .tint(Color.movoGreen)
 
                 } else if manager.isRunning {
 
@@ -81,10 +65,13 @@ struct FocusTimerView: View {
                         .foregroundStyle(.secondary)
 
                     HStack(spacing: 12) {
+
                         ForEach(durations, id: \.self) { minutes in
+
                             Button {
                                 selectedMinutes = minutes
                             } label: {
+
                                 Text("\(minutes)")
                                     .font(.headline)
                                     .frame(width: 48, height: 48)
@@ -102,7 +89,7 @@ struct FocusTimerView: View {
                             }
                         }
                     }
-                    
+
                     Button("Test: 5 Seconds") {
                         manager.startTest(seconds: 5)
                     }

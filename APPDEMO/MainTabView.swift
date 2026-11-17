@@ -1,3 +1,4 @@
+
 import SwiftUI
 
 struct MainTabView: View {
@@ -5,6 +6,7 @@ struct MainTabView: View {
     @State private var selectedTab: Int = 0
 
     @StateObject private var timeManager = EarnedTimeManager.shared
+    @StateObject private var focusManager = FocusTimerManager.shared
 
     @State private var isWorkoutPresented = false
 
@@ -12,7 +14,7 @@ struct MainTabView: View {
         title: String,
         reps: Int,
         rewardMinutes: Int
-    ) = ("Squats", 20, 0)
+    ) = ("Squats", 20, 10)
 
     var body: some View {
 
@@ -56,24 +58,24 @@ struct MainTabView: View {
                 }
                 .tag(3)
         }
-
         .tint(.movoGreen)
 
         .onAppear {
-            FocusTimerManager.shared.requestNotificationPermission()
+            focusManager.requestNotificationPermission()
+
+            if focusManager.needsExercise {
+                selectedTab = 1
+            }
         }
 
-        // Open exercise when timer finishes.
-        .onReceive(
-            NotificationCenter.default.publisher(
-                for: Notification.Name("StartMovoExercise")
-            )
-        ) { _ in
-            activeWorkoutTarget = ("Squats", 20, 10)
-            isWorkoutPresented = true
+        // Automatically navigate to Challenges when time expires.
+        .onChange(of: focusManager.needsExercise) { _, needsExercise in
+            if needsExercise {
+                selectedTab = 1
+            }
         }
 
-        // Exercise camera.
+        // Show the selected exercise camera.
         .fullScreenCover(isPresented: $isWorkoutPresented) {
 
             WorkoutCameraSheet(
@@ -81,7 +83,8 @@ struct MainTabView: View {
                 targetReps: activeWorkoutTarget.reps,
                 rewardMinutes: activeWorkoutTarget.rewardMinutes,
                 onComplete: { earned in
-                    FocusTimerManager.shared.exerciseCompleted(minutes: earned)
+                    focusManager.exerciseCompleted(minutes: earned)
+                    selectedTab = 0
                 }
             )
         }
@@ -89,13 +92,17 @@ struct MainTabView: View {
 }
 
 
-// Simple prototype settings screen (no Screen Time / Family Controls).
+// MARK: - Settings
+
 struct SettingsView: View {
+
     var body: some View {
+
         NavigationStack {
             List {
+
                 Section("About") {
-                    Text("Movo helps you break doomscrolling: when your focus time runs out, do an exercise to earn more.")
+                    Text("Movo helps you break doomscrolling: when your focus time runs out, do an exercise to earn more time.")
                         .font(.subheadline)
                 }
 
