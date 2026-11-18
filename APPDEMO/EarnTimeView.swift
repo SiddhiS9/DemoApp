@@ -11,10 +11,10 @@ struct EarnTimeView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     // Header
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Move. Earn. Enjoy.")
+                        Text("Move. Earn. LOCK IN.")
                             .font(.system(size: 28, weight: .bold))
                             .foregroundStyle(Color.movoDark)
-                        Text("Complete a challenge to add screen time.")
+                        Text("Complete a challenge to add more focus time!")
                             .font(.system(size: 13))
                             .foregroundStyle(.secondary)
                     }
@@ -24,7 +24,7 @@ struct EarnTimeView: View {
                     HStack {
                         Image(systemName: "stopwatch.fill")
                             .foregroundStyle(Color.movoGreen)
-                        Text("Your balance: **\(balanceMinutes) min**")
+                        Text("Your total: **\(balanceMinutes) min**")
                             .font(.system(size: 14))
                             .foregroundStyle(Color.movoDark)
                         Spacer()

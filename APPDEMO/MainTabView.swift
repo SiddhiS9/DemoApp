@@ -43,7 +43,7 @@ struct MainTabView: View {
 
             // ACTIVITY TAB
             ActivityView(
-                usedMinutes: timeManager.usedTodayMinutes,
+                usedMinutes: timeManager.focusedTodayMinutes,
                 earnedMinutes: timeManager.earnedTodayMinutes
             )
             .tabItem {
@@ -102,12 +102,8 @@ struct SettingsView: View {
             List {
 
                 Section("About") {
-                    Text("Movo helps you break doomscrolling: when your focus time runs out, do an exercise to earn more time.")
+                    Text("Movo helps you take advantage of your break: Focus, Exercise, then Focus Up Again!")
                         .font(.subheadline)
-                }
-
-                Section("Daily allowance") {
-                    Text("30 minutes + time earned from challenges")
                 }
 
                 Section {

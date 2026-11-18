@@ -13,7 +13,9 @@ final class FocusTimerManager: ObservableObject {
 
     private var timer: Timer?
     private var endDate: Date?
+    private var sessionStartedAt: Date?
 
+    private let sessionStartKey = "movoFocusSessionStart"
     private let defaults = UserDefaults.standard
     private let endDateKey = "movoFocusTimerEndDate"
     private let exerciseKey = "movoNeedsExercise"
@@ -91,6 +93,8 @@ final class FocusTimerManager: ObservableObject {
 
         endDate = end
         defaults.set(end, forKey: endDateKey)
+        sessionStartedAt = Date()
+        defaults.set(sessionStartedAt, forKey: sessionStartKey)
 
         isRunning = true
         updateRemainingTime()
@@ -104,6 +108,7 @@ final class FocusTimerManager: ObservableObject {
         timer = nil
 
         isRunning = false
+        recordFocusedTime()
         endDate = nil
 
         defaults.removeObject(forKey: endDateKey)
@@ -177,6 +182,7 @@ final class FocusTimerManager: ObservableObject {
         )
 
         if remainingSeconds == 0 {
+            recordFocusedTime()
             timer?.invalidate()
             timer = nil
 
@@ -192,6 +198,10 @@ final class FocusTimerManager: ObservableObject {
     // Restore an active timer after reopening the app.
     private func restoreTimer() {
         needsExercise = defaults.bool(forKey: exerciseKey)
+        
+        sessionStartedAt = defaults.object(
+            forKey: sessionStartKey
+        ) as? Date
 
         guard let savedEndDate = defaults.object(
             forKey: endDateKey
@@ -202,6 +212,7 @@ final class FocusTimerManager: ObservableObject {
         endDate = savedEndDate
 
         if savedEndDate <= Date() {
+            recordFocusedTime()
             remainingSeconds = 0
             needsExercise = true
 
@@ -224,5 +235,19 @@ final class FocusTimerManager: ObservableObject {
             minutes,
             seconds
         )
+    }
+    
+    // Save the elapsed focus time exactly once.
+    private func recordFocusedTime() {
+        guard let start = sessionStartedAt else { return }
+
+        let elapsed = Int(Date().timeIntervalSince(start))
+
+        EarnedTimeManager.shared.addFocusedTime(
+            seconds: elapsed
+        )
+
+        sessionStartedAt = nil
+        defaults.removeObject(forKey: sessionStartKey)
     }
 }

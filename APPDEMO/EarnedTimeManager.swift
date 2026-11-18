@@ -21,6 +21,7 @@ final class EarnedTimeManager: ObservableObject {
     @Published private(set) var remainingSeconds = 0
     @Published private(set) var earnedTodayMinutes = 0
     @Published private(set) var usedTodayMinutes = 0
+    @Published private(set) var focusedTodaySeconds = 0
 
     private let defaults = UserDefaults.standard
 
@@ -28,6 +29,7 @@ final class EarnedTimeManager: ObservableObject {
     private let earnedKey = "movoEarnedToday"
     private let usedKey = "movoUsedToday"
     private let resetDateKey = "movoLastResetDate"
+    private let focusedKey = "movoFocusedTodaySeconds"
 
     private init() {
         refresh()
@@ -52,6 +54,10 @@ final class EarnedTimeManager: ObservableObject {
 
             usedTodayMinutes = defaults.integer(
                 forKey: usedKey
+            )
+            
+            focusedTodaySeconds = defaults.integer(
+                forKey: focusedKey
             )
 
         } else {
@@ -95,11 +101,28 @@ final class EarnedTimeManager: ObservableObject {
 
         saveBalance()
     }
+    
+    // Record actual time spent focusing.
+    func addFocusedTime(seconds: Int) {
+        guard seconds > 0 else { return }
+
+        refresh()
+
+        focusedTodaySeconds += seconds
+
+        saveBalance()
+    }
+
+    // Convert focused seconds into whole minutes for ActivityView.
+    var focusedTodayMinutes: Int {
+        focusedTodaySeconds / 60
+    }
 
     private func saveBalance() {
         defaults.set(remainingSeconds, forKey: remainingKey)
         defaults.set(earnedTodayMinutes, forKey: earnedKey)
         defaults.set(usedTodayMinutes, forKey: usedKey)
+        defaults.set(focusedTodaySeconds, forKey: focusedKey)
     }
 
     var remainingMinutes: Int {

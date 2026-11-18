@@ -21,18 +21,15 @@ struct ActivityView: View {
                     // Header
                     VStack(alignment: .leading, spacing: 4) {
                         Text("A healthier balance.")
-                            .font(.system(size: 28, weight: .bold))
+                            .font(.system(size: 30, weight: .bold))
                             .foregroundStyle(Color.movoDark)
-                        Text("Less scrolling. More moving. All you.")
-                            .font(.system(size: 13))
-                            .foregroundStyle(.secondary)
                     }
                     .padding(.top, 8)
 
                     // Top Split Stat Cards
                     HStack(spacing: 14) {
                         VStack(alignment: .leading, spacing: 6) {
-                            Text("SCREEN TIME USED")
+                            Text("TOTAL FOCUS TIME")
                                 .font(.system(size: 10, weight: .bold))
                                 .foregroundStyle(.secondary)
                             HStack(alignment: .firstTextBaseline, spacing: 2) {
@@ -50,11 +47,11 @@ struct ActivityView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
 
                         VStack(alignment: .leading, spacing: 6) {
-                            Text("TIME EARNED")
+                            Text("TOTAL EXERCISE TIME")
                                 .font(.system(size: 10, weight: .bold))
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(.black)
                             HStack(alignment: .firstTextBaseline, spacing: 2) {
-                                Text("+\(earnedMinutes)")
+                                Text("\(earnedMinutes)")
                                     .font(.system(size: 28, weight: .heavy, design: .rounded))
                                     .foregroundStyle(Color.movoGreen)
                                 Text("min")
@@ -71,7 +68,7 @@ struct ActivityView: View {
                     // Screen Time This Week Bar Chart Card
                     VStack(alignment: .leading, spacing: 16) {
                         HStack {
-                            Text("Screen time this week")
+                            Text("Focus time this week")
                                 .font(.system(size: 16, weight: .bold))
                                 .foregroundStyle(Color.movoDark)
                             Spacer()
@@ -83,11 +80,11 @@ struct ActivityView: View {
                         HStack(spacing: 14) {
                             HStack(spacing: 4) {
                                 Circle().fill(Color.movoCoral).frame(width: 6, height: 6)
-                                Text("Used").font(.caption2).foregroundStyle(.secondary)
+                                Text("Focused").font(.caption2).foregroundStyle(.black)
                             }
                             HStack(spacing: 4) {
                                 Circle().fill(Color.movoGreen).frame(width: 6, height: 6)
-                                Text("Earned").font(.caption2).foregroundStyle(.secondary)
+                                Text("Exercise").font(.caption2).foregroundStyle(.black)
                             }
                         }
 
@@ -125,7 +122,7 @@ struct ActivityView: View {
                             Spacer()
                             Text(Date().formatted(.dateTime.month(.abbreviated).day()))
                                 .font(.system(size: 12, weight: .medium))
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(.black)
                         }
 
                         VStack(spacing: 14) {
