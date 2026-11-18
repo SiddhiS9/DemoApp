@@ -1,10 +1,15 @@
 import SwiftUI
+import FamilyControls   // Label(token) for showing picked apps
+import ManagedSettings  // the token types themselves
 
 struct TodayView: View {
-    @Binding var availableMinutes: Int
+    @EnvironmentObject private var state: AppState
+    @EnvironmentObject private var screenTime: ScreenTimeManager
+    let availableMinutes: Int
     let usedMinutes: Int
     let earnedMinutes: Int
     let onStartChallenge: () -> Void
+    let onManageApps: () -> Void
 
     var body: some View {
         NavigationStack {
@@ -43,10 +48,11 @@ struct TodayView: View {
                                 .frame(width: 170, height: 170)
 
                             Circle()
-                                .trim(from: 0.0, to: 0.75)
+                                .trim(from: 0.0, to: state.remainingFraction)
                                 .stroke(Color.movoGreen, style: StrokeStyle(lineWidth: 14, lineCap: .round))
                                 .rotationEffect(.degrees(-90))
                                 .frame(width: 170, height: 170)
+                                .animation(.easeInOut(duration: 0.6), value: state.remainingFraction)
 
                             VStack(spacing: 2) {
                                 Text("\(availableMinutes)")
@@ -58,7 +64,7 @@ struct TodayView: View {
                             }
                         }
 
-                        Text("30 min daily allowance + \(earnedMinutes) min earned")
+                        Text("\(state.dailyAllowance) min daily allowance + \(earnedMinutes) min earned")
                             .font(.system(size: 12))
                             .foregroundStyle(.secondary)
 
@@ -99,15 +105,33 @@ struct TodayView: View {
                                 .font(.system(size: 18, weight: .bold))
                                 .foregroundStyle(Color.movoDark)
                             Spacer()
-                            Button("Manage") {}
+                            Button("Manage", action: onManageApps)
                                 .font(.system(size: 13, weight: .semibold))
                                 .foregroundStyle(Color.movoGreen)
                         }
 
                         VStack(spacing: 10) {
-                            AppRow(iconColor: .movoCoral, icon: "iphone", title: "Social apps", subtitle: "Instagram · TikTok")
-                            Divider().padding(.leading, 52)
-                            AppRow(iconColor: .blue, icon: "play.tv.fill", title: "Entertainment", subtitle: "YouTube · Games")
+                            if limitedItems.isEmpty {
+                                // Nothing picked yet: invite the user to choose apps.
+                                Button(action: onManageApps) {
+                                    AppRow(iconColor: .movoGreen, icon: "plus.app",
+                                           title: "No apps limited yet",
+                                           subtitle: "Tap to choose which apps Movo locks")
+                                }
+                                .buttonStyle(.plain)
+                            } else {
+                                ForEach(Array(limitedItems.prefix(maxRows).enumerated()), id: \.element) { index, item in
+                                    if index > 0 { Divider() }
+                                    LimitedItemRow(item: item, isLocked: availableMinutes == 0)
+                                }
+                                if limitedItems.count > maxRows {
+                                    Divider()
+                                    Button("+\(limitedItems.count - maxRows) more", action: onManageApps)
+                                        .font(.system(size: 13, weight: .semibold))
+                                        .foregroundStyle(Color.movoGreen)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }
+                            }
                         }
                         .padding(16)
                         .background(Color.white)
@@ -133,6 +157,57 @@ struct TodayView: View {
                 .padding(.bottom, 24)
             }
             .background(Color.movoBackground.ignoresSafeArea())
+        }
+    }
+}
+
+// MARK: - Limited apps (real Screen Time selection)
+
+extension TodayView {
+    /// Show at most this many rows on the home screen. The rest are behind "+N more".
+    private var maxRows: Int { 4 }
+
+    /// Everything the user picked in the Screen Time picker, flattened into one list.
+    private var limitedItems: [LimitedItem] {
+        let selection = screenTime.selection
+        return selection.applicationTokens.map(LimitedItem.app)
+            + selection.categoryTokens.map(LimitedItem.category)
+            + selection.webDomainTokens.map(LimitedItem.site)
+    }
+}
+
+/// One picked thing. The tokens are opaque: Movo can't read the app's name,
+/// only hand the token back to iOS, which draws the real name and icon.
+enum LimitedItem: Hashable {
+    case app(ApplicationToken)
+    case category(ActivityCategoryToken)
+    case site(WebDomainToken)
+}
+
+struct LimitedItemRow: View {
+    let item: LimitedItem
+    let isLocked: Bool
+
+    var body: some View {
+        HStack(spacing: 14) {
+            Group {
+                // Label(token) is from FamilyControls: iOS fills in the name and icon privately.
+                switch item {
+                case .app(let token): Label(token)
+                case .category(let token): Label(token)
+                case .site(let token): Label(token)
+                }
+            }
+            .labelStyle(.titleAndIcon)
+            .font(.system(size: 15, weight: .semibold))
+            .foregroundStyle(Color.movoDark)
+            .lineLimit(1)
+
+            Spacer()
+
+            Image(systemName: isLocked ? "lock.fill" : "lock.open")
+                .font(.system(size: 13))
+                .foregroundStyle(isLocked ? Color.movoCoral : Color.secondary)
         }
     }
 }

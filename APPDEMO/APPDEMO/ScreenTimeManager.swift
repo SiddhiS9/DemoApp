@@ -1,86 +1,60 @@
-
-import SwiftUI
+import Foundation
+import Combine
 import FamilyControls
+import UserNotifications
 
-@MainActor
+/// Owns Screen Time authorization and the user's chosen apps.
+/// The minutes logic lives in AppState. This class only covers "is Movo allowed to block?" and "block what?".
 final class ScreenTimeManager: ObservableObject {
 
-    @Published var selection = FamilyActivitySelection()
-    @Published var isPickerPresented = false
+    @Published private(set) var authorizationStatus: AuthorizationStatus
 
-    @Published var isAuthorized =
-        AuthorizationCenter.shared.authorizationStatus == .approved
-
-    @Published var statusMessage = "Screen Time is not connected yet."
-
-    func requestAuthorization() {
-        Task {
-            do {
-                try await AuthorizationCenter.shared.requestAuthorization(
-                    for: .individual
-                )
-
-                isAuthorized =
-                    AuthorizationCenter.shared.authorizationStatus == .approved
-
-                if isAuthorized {
-                    statusMessage = "Screen Time access granted!"
-                    isPickerPresented = true
-                }
-
-            } catch {
-                statusMessage =
-                    "Authorization failed: \(error.localizedDescription)"
-            }
-        }
+    /// What the user picked in FamilyActivityPicker. Saved to the App Group on every change
+    /// so the monitor extension can shield the same apps.
+    @Published var selection: FamilyActivitySelection {
+        didSet { SharedStore.saveSelection(selection) }
     }
-}
 
-struct ScreenTimeSetupView: View {
+    @Published var errorMessage: String?
 
-    @StateObject private var manager = ScreenTimeManager()
+    private var cancellables = Set<AnyCancellable>()
 
-    var body: some View {
-        VStack(spacing: 20) {
+    init() {
+        authorizationStatus = AuthorizationCenter.shared.authorizationStatus
+        selection = SharedStore.loadSelection()
 
-            Image(systemName: "hourglass")
-                .font(.system(size: 45))
-                .foregroundStyle(Color.movoGreen)
+        // The user can revoke access in Settings → Screen Time, so watch for changes.
+        AuthorizationCenter.shared.$authorizationStatus
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] status in self?.authorizationStatus = status }
+            .store(in: &cancellables)
+    }
 
-            Text("Connect Screen Time")
-                .font(.title.bold())
+    var isAuthorized: Bool { authorizationStatus == .approved }
 
-            Text(manager.statusMessage)
-                .multilineTextAlignment(.center)
-                .foregroundStyle(.secondary)
+    var selectionSummary: String {
+        let apps = selection.applicationTokens.count
+        let categories = selection.categoryTokens.count
+        let sites = selection.webDomainTokens.count
+        var parts: [String] = []
+        if apps > 0 { parts.append("\(apps) app\(apps == 1 ? "" : "s")") }
+        if categories > 0 { parts.append("\(categories) categor\(categories == 1 ? "y" : "ies")") }
+        if sites > 0 { parts.append("\(sites) site\(sites == 1 ? "" : "s")") }
+        return parts.isEmpty ? "Nothing selected yet" : parts.joined(separator: " · ")
+    }
 
-            Button {
-                manager.requestAuthorization()
-            } label: {
-                Text(
-                    manager.isAuthorized
-                    ? "Choose Apps to Limit"
-                    : "Enable Screen Time"
-                )
-                .font(.headline)
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.movoGreen)
-                .clipShape(Capsule())
-            }
-
-            if manager.isAuthorized {
-                Text(
-                    "\(manager.selection.applicationTokens.count) apps selected"
-                )
-                .font(.subheadline)
-            }
+    /// Shows the system Screen Time prompt. `.individual` means the user is limiting their own
+    /// device, not a child's through Family Sharing.
+    func requestAuthorization() async {
+        do {
+            try await AuthorizationCenter.shared.requestAuthorization(for: .individual)
+            authorizationStatus = AuthorizationCenter.shared.authorizationStatus
+            errorMessage = nil
+            // The shield's "Earn minutes" button posts a notification, so ask for that permission here too.
+            _ = try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound])
+        } catch {
+            authorizationStatus = AuthorizationCenter.shared.authorizationStatus
+            errorMessage = "Screen Time access wasn't granted: \(error.localizedDescription)"
         }
-        .padding(24)
-        .familyActivityPicker(
-            isPresented: $manager.isPickerPresented,
-            selection: $manager.selection
-        )
     }
 }

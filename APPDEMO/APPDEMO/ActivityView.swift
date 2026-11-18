@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ActivityView: View {
+    @EnvironmentObject private var state: AppState
     let usedMinutes: Int
     let earnedMinutes: Int
 
@@ -129,32 +130,17 @@ struct ActivityView: View {
                         }
 
                         VStack(spacing: 14) {
-                            HistoryItem(
-                                icon: "figure.walk",
-                                iconColor: .movoGreen,
-                                title: "Walking goal reached",
-                                subtitle: "9:12 AM · 1,000 steps",
-                                delta: "+15 min",
-                                isPositive: true
-                            )
-                            Divider()
-                            HistoryItem(
-                                icon: "iphone",
-                                iconColor: .movoCoral,
-                                title: "Social apps",
-                                subtitle: "8:40 AM · Screen time",
-                                delta: "-25 min",
-                                isPositive: false
-                            )
-                            Divider()
-                            HistoryItem(
-                                icon: "flame.fill",
-                                iconColor: .movoGreen,
-                                title: "Active movement",
-                                subtitle: "8:15 AM · 10 minutes",
-                                delta: "+20 min",
-                                isPositive: true
-                            )
+                            ForEach(Array(state.history.enumerated()), id: \.element.id) { index, entry in
+                                if index > 0 { Divider() }
+                                HistoryItem(
+                                    icon: entry.icon,
+                                    iconColor: entry.isPositive ? .movoGreen : .movoCoral,
+                                    title: entry.title,
+                                    subtitle: entry.subtitle,
+                                    delta: entry.deltaText,
+                                    isPositive: entry.isPositive
+                                )
+                            }
                         }
                         .padding(16)
                         .background(Color.white)

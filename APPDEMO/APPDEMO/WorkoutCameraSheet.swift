@@ -7,13 +7,15 @@ struct WorkoutCameraSheet: View {
     let rewardMinutes: Int
     let onComplete: (Int) -> Void
 
-    @State private var currentReps: Int = 0
+    @StateObject private var camera = CameraManager()
+    @StateObject private var repCounter = RepCounter()
     @State private var isGoalReached: Bool = false
 
     var body: some View {
         ZStack {
             // Camera Feed Placeholder (Member 1 embeds CameraPreviewView here)
-            Color.black.ignoresSafeArea()
+            CameraPreview(session: camera.session)
+                .ignoresSafeArea()
 
             VStack {
                 // Top control bar
@@ -28,6 +30,13 @@ struct WorkoutCameraSheet: View {
                             .background(.ultraThinMaterial)
                             .clipShape(Circle())
                     }
+                    Text(camera.isPersonDetected ? repCounter.movementStatus : camera.cameraStatus)
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 14)
+                        .padding(.vertical, 8)
+                        .background(.ultraThinMaterial)
+                        .clipShape(Capsule())
                     Spacer()
                     Text("\(exerciseTitle) in Progress")
                         .font(.system(size: 13, weight: .semibold))
@@ -57,7 +66,7 @@ struct WorkoutCameraSheet: View {
                         }
                     } else {
                         VStack(spacing: 2) {
-                            Text("\(currentReps) / \(targetReps)")
+                            Text("\(repCounter.reps) / \(targetReps)")
                                 .font(.system(size: 48, weight: .heavy, design: .rounded))
                                 .foregroundStyle(Color.movoDark)
                             Text("REPS COMPLETED")
@@ -66,7 +75,7 @@ struct WorkoutCameraSheet: View {
                                 .tracking(1)
                         }
 
-                        ProgressView(value: Double(currentReps), total: Double(targetReps))
+                        ProgressView(value: Double(repCounter.reps), total: Double(targetReps))
                             .tint(Color.movoGreen)
                             .padding(.horizontal, 20)
                     }
@@ -79,20 +88,27 @@ struct WorkoutCameraSheet: View {
             }
         }
         // Tap on screen to simulate rep counts until Member 1 wires in Vision
-        .onTapGesture {
+        .onAppear { camera.start() }
+        .onDisappear { camera.stop() }
+        .onChange(of: camera.posePoints) { _, points in
             guard !isGoalReached else { return }
-            currentReps += 1
+            repCounter.processPose(points: points, exercise: exerciseTitle)
+        }
+        .onChange(of: repCounter.reps) { _, reps in
             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-
-            if currentReps >= targetReps {
-                isGoalReached = true
-                UINotificationFeedbackGenerator().notificationOccurred(.success)
-                onComplete(rewardMinutes)
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
-                    dismiss()
-                }
-            }
+            if reps >= targetReps { finishChallenge() }
+        }
+        #if targetEnvironment(simulator)
+        .onTapGesture { repCounter.simulateRep() }
+        #endif
+    }
+    private func finishChallenge() {
+        guard !isGoalReached else { return }
+        isGoalReached = true
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+        onComplete(rewardMinutes)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
+            dismiss()
         }
     }
 }

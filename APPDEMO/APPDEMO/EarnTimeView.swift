@@ -3,7 +3,7 @@ import SwiftUI
 struct EarnTimeView: View {
     let balanceMinutes: Int
     let earnedToday: Int
-    let onSelectChallenge: (String, Int, Int) -> Void
+    let onSelectChallenge: (Exercise) -> Void
 
     var body: some View {
         NavigationStack {
@@ -57,7 +57,7 @@ struct EarnTimeView: View {
                         }
 
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("20 squats. 10 more minutes.")
+                            Text(Exercise.squats.headline)
                                 .font(.system(size: 20, weight: .bold))
                                 .foregroundStyle(Color.movoDark)
                             Text("A little effort, a well-earned break.")
@@ -66,7 +66,7 @@ struct EarnTimeView: View {
                         }
 
                         Button {
-                            onSelectChallenge("Squats", 20, 10)
+                            onSelectChallenge(.squats)
                         } label: {
                             HStack(spacing: 6) {
                                 Image(systemName: "plus")
@@ -91,21 +91,21 @@ struct EarnTimeView: View {
                             .foregroundStyle(Color.movoDark)
 
                         RewardTile(
-                            icon: "figure.walk",
+                            icon: Exercise.abs.icon,
                             iconColor: .orange,
-                            title: "Take a walk",
-                            subtitle: "1,000 steps · Walking",
-                            reward: "+15 min",
-                            action: { onSelectChallenge("Walking", 1000, 15) }
+                            title: "Ab break",
+                            subtitle: Exercise.abs.subtitle,
+                            reward: "+\(Exercise.abs.rewardMinutes) min",
+                            action: { onSelectChallenge(.abs) }
                         )
 
                         RewardTile(
-                            icon: "figure.jumprope",
+                            icon: Exercise.pushUps.icon,
                             iconColor: .blue,
                             title: "Push-up break",
-                            subtitle: "10 reps · Strength",
-                            reward: "+5 min",
-                            action: { onSelectChallenge("Push-ups", 10, 5) }
+                            subtitle: Exercise.pushUps.subtitle,
+                            reward: "+\(Exercise.pushUps.rewardMinutes) min",
+                            action: { onSelectChallenge(.pushUps) }
                         )
                     }
 

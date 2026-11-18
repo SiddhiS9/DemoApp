@@ -75,6 +75,20 @@ struct ProfileView: View {
                             .background(Color.movoLightCoral)
                             .clipShape(Capsule())
                     }
+
+                    #if DEBUG
+                    Button {
+                        withAnimation { state.drainBalance() }
+                    } label: {
+                        Text("Demo: set remaining to 0 min")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 14)
+                            .background(Color.movoDark)
+                            .clipShape(Capsule())
+                    }
+                    #endif
                 }
                 .padding(.horizontal, 20)
                 .padding(.bottom, 24)

@@ -6,20 +6,148 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		10B35937523F9B746C762650 /* MovoShieldAction.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D9DFBA457061E76C20780425 /* MovoShieldAction.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5F5AEB24E91568AC9A39A26C /* MovoShieldConfig.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D858F1B238EBC81B166B81A3 /* MovoShieldConfig.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F557ABE0BBA96BC39B8D8D82 /* MovoMonitor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 76C5280DAFA701E10A7F482D /* MovoMonitor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		19DBF226E950AE854977FBA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B669FA530AA9FC000792B0A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C72A1C7731085CB6DD079951;
+			remoteInfo = MovoMonitor;
+		};
+		46A8F4EA16C81083A9018FA2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B669FA530AA9FC000792B0A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 596AE972E59D50603729187B;
+			remoteInfo = MovoShieldConfig;
+		};
+		52E13DC41A74A8786AE0F78B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B669FA530AA9FC000792B0A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B60247233E38E587DEAE12D7;
+			remoteInfo = MovoShieldAction;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3ABE6B01AB29D7A7093F3227 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F557ABE0BBA96BC39B8D8D82 /* MovoMonitor.appex in Embed Foundation Extensions */,
+				5F5AEB24E91568AC9A39A26C /* MovoShieldConfig.appex in Embed Foundation Extensions */,
+				10B35937523F9B746C762650 /* MovoShieldAction.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4B669FAD30AA9FC000792B0A /* APPDEMO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APPDEMO.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		76C5280DAFA701E10A7F482D /* MovoMonitor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MovoMonitor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D858F1B238EBC81B166B81A3 /* MovoShieldConfig.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MovoShieldConfig.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9DFBA457061E76C20780425 /* MovoShieldAction.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MovoShieldAction.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		66208D3A101A00C0FC046424 /* Exceptions for "APPDEMO" folder in "MovoMonitor" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Shared/MovoShared.swift,
+			);
+			target = C72A1C7731085CB6DD079951 /* MovoMonitor */;
+		};
+		719443C1CB42E0A3307018F3 /* Exceptions for "MovoShieldAction" folder in "MovoShieldAction" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = B60247233E38E587DEAE12D7 /* MovoShieldAction */;
+		};
+		AE0D0C00DC15825B9A5E214E /* Exceptions for "MovoShieldConfig" folder in "MovoShieldConfig" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 596AE972E59D50603729187B /* MovoShieldConfig */;
+		};
+		C5B855171ED023DE735ADF87 /* Exceptions for "MovoMonitor" folder in "MovoMonitor" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = C72A1C7731085CB6DD079951 /* MovoMonitor */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		26F002BBF3754B53A3B83BCB /* MovoShieldAction */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				719443C1CB42E0A3307018F3 /* Exceptions for "MovoShieldAction" folder in "MovoShieldAction" target */,
+			);
+			path = MovoShieldAction;
+			sourceTree = "<group>";
+		};
 		4B669FAF30AA9FC000792B0A /* APPDEMO */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				66208D3A101A00C0FC046424 /* Exceptions for "APPDEMO" folder in "MovoMonitor" target */,
+			);
 			path = APPDEMO;
+			sourceTree = "<group>";
+		};
+		58139F34793194C687A77065 /* MovoShieldConfig */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				AE0D0C00DC15825B9A5E214E /* Exceptions for "MovoShieldConfig" folder in "MovoShieldConfig" target */,
+			);
+			path = MovoShieldConfig;
+			sourceTree = "<group>";
+		};
+		95EF1829C6656BE73409F27A /* MovoMonitor */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C5B855171ED023DE735ADF87 /* Exceptions for "MovoMonitor" folder in "MovoMonitor" target */,
+			);
+			path = MovoMonitor;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		4B669FAA30AA9FC000792B0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		613BD94A49B5C1376EB53669 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C41FB0FA8CC4F21646790C47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79BF4DFBC021F2827876759 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -34,6 +162,9 @@
 			children = (
 				4B669FAF30AA9FC000792B0A /* APPDEMO */,
 				4B669FAE30AA9FC000792B0A /* Products */,
+				95EF1829C6656BE73409F27A /* MovoMonitor */,
+				58139F34793194C687A77065 /* MovoShieldConfig */,
+				26F002BBF3754B53A3B83BCB /* MovoShieldAction */,
 			);
 			sourceTree = "<group>";
 		};
@@ -41,6 +172,9 @@
 			isa = PBXGroup;
 			children = (
 				4B669FAD30AA9FC000792B0A /* APPDEMO.app */,
+				76C5280DAFA701E10A7F482D /* MovoMonitor.appex */,
+				D858F1B238EBC81B166B81A3 /* MovoShieldConfig.appex */,
+				D9DFBA457061E76C20780425 /* MovoShieldAction.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,10 +189,14 @@
 				4B669FA930AA9FC000792B0A /* Sources */,
 				4B669FAA30AA9FC000792B0A /* Frameworks */,
 				4B669FAB30AA9FC000792B0A /* Resources */,
+				3ABE6B01AB29D7A7093F3227 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				61B789E0F5525092FE91C25D /* PBXTargetDependency */,
+				D932631D638A5263D02A04A1 /* PBXTargetDependency */,
+				941F7650D07E440DBD625AB1 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				4B669FAF30AA9FC000792B0A /* APPDEMO */,
@@ -70,6 +208,72 @@
 			productReference = 4B669FAD30AA9FC000792B0A /* APPDEMO.app */;
 			productType = "com.apple.product-type.application";
 		};
+		596AE972E59D50603729187B /* MovoShieldConfig */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D153882B534CC6B804BA8998 /* Build configuration list for PBXNativeTarget "MovoShieldConfig" */;
+			buildPhases = (
+				7E6128B052D4760A567471CD /* Sources */,
+				613BD94A49B5C1376EB53669 /* Frameworks */,
+				D93179FFA13FB1C343606FA7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				58139F34793194C687A77065 /* MovoShieldConfig */,
+			);
+			name = MovoShieldConfig;
+			packageProductDependencies = (
+			);
+			productName = MovoShieldConfig;
+			productReference = D858F1B238EBC81B166B81A3 /* MovoShieldConfig.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		B60247233E38E587DEAE12D7 /* MovoShieldAction */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2BF159DC9A6BFB9622F664FC /* Build configuration list for PBXNativeTarget "MovoShieldAction" */;
+			buildPhases = (
+				2863E9C943DD93262F70AB3C /* Sources */,
+				E79BF4DFBC021F2827876759 /* Frameworks */,
+				C8990DA30AFEB272399A580E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				26F002BBF3754B53A3B83BCB /* MovoShieldAction */,
+			);
+			name = MovoShieldAction;
+			packageProductDependencies = (
+			);
+			productName = MovoShieldAction;
+			productReference = D9DFBA457061E76C20780425 /* MovoShieldAction.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		C72A1C7731085CB6DD079951 /* MovoMonitor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC1113F5BB03CE61561C6A66 /* Build configuration list for PBXNativeTarget "MovoMonitor" */;
+			buildPhases = (
+				16D6472EE7D84C1CA76A94E9 /* Sources */,
+				C41FB0FA8CC4F21646790C47 /* Frameworks */,
+				87217824A1EB3F7EA994A770 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				95EF1829C6656BE73409F27A /* MovoMonitor */,
+			);
+			name = MovoMonitor;
+			packageProductDependencies = (
+			);
+			productName = MovoMonitor;
+			productReference = 76C5280DAFA701E10A7F482D /* MovoMonitor.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -78,10 +282,19 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2660;
-				LastUpgradeCheck = 2660;
+				LastUpgradeCheck = 2720;
 				TargetAttributes = {
 					4B669FAC30AA9FC000792B0A = {
 						CreatedOnToolsVersion = 26.6;
+					};
+					596AE972E59D50603729187B = {
+						CreatedOnToolsVersion = 27.2;
+					};
+					B60247233E38E587DEAE12D7 = {
+						CreatedOnToolsVersion = 27.2;
+					};
+					C72A1C7731085CB6DD079951 = {
+						CreatedOnToolsVersion = 27.2;
 					};
 				};
 			};
@@ -100,6 +313,9 @@
 			projectRoot = "";
 			targets = (
 				4B669FAC30AA9FC000792B0A /* APPDEMO */,
+				C72A1C7731085CB6DD079951 /* MovoMonitor */,
+				596AE972E59D50603729187B /* MovoShieldConfig */,
+				B60247233E38E587DEAE12D7 /* MovoShieldAction */,
 			);
 		};
 /* End PBXProject section */
@@ -112,10 +328,52 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		87217824A1EB3F7EA994A770 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8990DA30AFEB272399A580E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D93179FFA13FB1C343606FA7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		16D6472EE7D84C1CA76A94E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2863E9C943DD93262F70AB3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4B669FA930AA9FC000792B0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E6128B052D4760A567471CD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -124,7 +382,119 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		61B789E0F5525092FE91C25D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C72A1C7731085CB6DD079951 /* MovoMonitor */;
+			targetProxy = 19DBF226E950AE854977FBA6 /* PBXContainerItemProxy */;
+		};
+		941F7650D07E440DBD625AB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B60247233E38E587DEAE12D7 /* MovoShieldAction */;
+			targetProxy = 52E13DC41A74A8786AE0F78B /* PBXContainerItemProxy */;
+		};
+		D932631D638A5263D02A04A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 596AE972E59D50603729187B /* MovoShieldConfig */;
+			targetProxy = 46A8F4EA16C81083A9018FA2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		0C15985D0D3190BDA41BAC18 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MovoShieldConfig/MovoShieldConfig.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JF3K6MCQNS;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MovoShieldConfig/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MovoShieldConfig;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.affinux.movo.MovoShieldConfig;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1F8BD1117DEE1A7128F1D14F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MovoShieldAction/MovoShieldAction.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JF3K6MCQNS;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MovoShieldAction/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MovoShieldAction;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.affinux.movo.MovoShieldAction;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2D4AB188165219C73E1FEE6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MovoMonitor/MovoMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JF3K6MCQNS;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MovoMonitor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MovoMonitor;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.affinux.movo.MovoMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		4B669FB630AA9FC000792B0A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -183,6 +553,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -239,6 +610,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -249,10 +621,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = APPDEMO/APPDEMO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JF3K6MCQNS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Movo;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Movo uses the camera to count your reps.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -263,8 +639,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = samueldevassy.APPDEMO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.affinux.movo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -280,10 +657,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = APPDEMO/APPDEMO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JF3K6MCQNS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Movo;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Movo uses the camera to count your reps.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -294,8 +675,104 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = samueldevassy.APPDEMO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.affinux.movo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		516E386598EA1960F0EC4F38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MovoShieldConfig/MovoShieldConfig.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JF3K6MCQNS;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MovoShieldConfig/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MovoShieldConfig;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.affinux.movo.MovoShieldConfig;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B042146EB6C99004A257444E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MovoMonitor/MovoMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JF3K6MCQNS;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MovoMonitor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MovoMonitor;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.affinux.movo.MovoMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D30BF9EB497F902D9C359A0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MovoShieldAction/MovoShieldAction.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JF3K6MCQNS;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MovoShieldAction/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MovoShieldAction;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.affinux.movo.MovoShieldAction;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -309,6 +786,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2BF159DC9A6BFB9622F664FC /* Build configuration list for PBXNativeTarget "MovoShieldAction" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F8BD1117DEE1A7128F1D14F /* Debug */,
+				D30BF9EB497F902D9C359A0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4B669FA830AA9FC000792B0A /* Build configuration list for PBXProject "APPDEMO" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -323,6 +809,24 @@
 			buildConfigurations = (
 				4B669FB930AA9FC000792B0A /* Debug */,
 				4B669FBA30AA9FC000792B0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AC1113F5BB03CE61561C6A66 /* Build configuration list for PBXNativeTarget "MovoMonitor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B042146EB6C99004A257444E /* Debug */,
+				2D4AB188165219C73E1FEE6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D153882B534CC6B804BA8998 /* Build configuration list for PBXNativeTarget "MovoShieldConfig" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				516E386598EA1960F0EC4F38 /* Debug */,
+				0C15985D0D3190BDA41BAC18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

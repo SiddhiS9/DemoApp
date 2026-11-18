@@ -3,6 +3,8 @@ import AVFoundation
 import Vision
 import ImageIO
 
+import Combine
+
 final class CameraManager: NSObject, ObservableObject {
 
     let session = AVCaptureSession()
