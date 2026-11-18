@@ -11,7 +11,7 @@ struct EarnTimeView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     // Header
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Move. Earn. Enjoy.")
+                        Text("Rethink your screentime.")
                             .font(.system(size: 28, weight: .bold))
                             .foregroundStyle(Color.movoDark)
                         Text("Complete a challenge to add screen time.")

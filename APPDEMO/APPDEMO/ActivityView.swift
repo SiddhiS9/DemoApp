@@ -21,10 +21,10 @@ struct ActivityView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     // Header
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("A healthier balance.")
+                        Text("Keep a balance.")
                             .font(.system(size: 28, weight: .bold))
                             .foregroundStyle(Color.movoDark)
-                        Text("Less scrolling. More moving. All you.")
+                        Text("Scroll Less. Move More.")
                             .font(.system(size: 13))
                             .foregroundStyle(.secondary)
                     }

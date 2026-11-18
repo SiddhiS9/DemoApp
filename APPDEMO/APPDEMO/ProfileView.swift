@@ -12,7 +12,7 @@ struct ProfileView: View {
                         Text("Your settings.")
                             .font(.system(size: 28, weight: .bold))
                             .foregroundStyle(Color.movoDark)
-                        Text("Set your own balance.")
+                        Text("Set your own limits.")
                             .font(.system(size: 13))
                             .foregroundStyle(.secondary)
                     }
