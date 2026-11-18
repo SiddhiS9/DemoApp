@@ -31,7 +31,7 @@ struct ActivityView: View {
                         VStack(alignment: .leading, spacing: 6) {
                             Text("TOTAL FOCUS TIME")
                                 .font(.system(size: 10, weight: .bold))
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(.black)
                             HStack(alignment: .firstTextBaseline, spacing: 2) {
                                 Text("\(usedMinutes)")
                                     .font(.system(size: 28, weight: .heavy, design: .rounded))
@@ -191,7 +191,7 @@ struct HistoryItem: View {
                     .foregroundStyle(Color.movoDark)
                 Text(subtitle)
                     .font(.system(size: 11))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.black)
             }
 
             Spacer()

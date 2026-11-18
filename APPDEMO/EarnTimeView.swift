@@ -16,7 +16,7 @@ struct EarnTimeView: View {
                             .foregroundStyle(Color.movoDark)
                         Text("Complete a challenge to add more focus time!")
                             .font(.system(size: 13))
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(.black)
                     }
                     .padding(.top, 8)
 
@@ -62,7 +62,7 @@ struct EarnTimeView: View {
                                 .foregroundStyle(Color.movoDark)
                             Text("A little effort, a well-earned break.")
                                 .font(.system(size: 13))
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(.black)
                         }
 
                         Button {
@@ -111,7 +111,7 @@ struct EarnTimeView: View {
 
                     Text("Rewards are added after activity is verified on camera.")
                         .font(.system(size: 11))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.black)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, 8)
                 }
@@ -134,7 +134,7 @@ struct BadgeIcon: View {
                 .frame(width: 44, height: 44)
             Image(systemName: systemName)
                 .font(.system(size: 17, weight: .medium))
-                .foregroundStyle(active ? Color.movoGreen : .secondary)
+                .foregroundStyle(active ? Color.movoGreen : Color.black)
         }
     }
 }
@@ -165,7 +165,7 @@ struct RewardTile: View {
                         .foregroundStyle(Color.movoDark)
                     Text(subtitle)
                         .font(.system(size: 12))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.black)
                 }
 
                 Spacer()
