@@ -29,7 +29,7 @@ struct TodayView: View {
                             .foregroundStyle(.secondary)
                             .tracking(0.8)
                         
-                        Text("Your time, earned.")
+                        Text("Get up, you chud.")
                             .font(.system(size: 28, weight: .bold))
                             .foregroundStyle(Color.movoDark)
                     }
@@ -116,7 +116,7 @@ struct TodayView: View {
                                 Button(action: onManageApps) {
                                     AppRow(iconColor: .movoGreen, icon: "plus.app",
                                            title: "No apps limited yet",
-                                           subtitle: "Tap to choose which apps Movo locks")
+                                           subtitle: "Tap to choose which apps to lock.")
                                 }
                                 .buttonStyle(.plain)
                             } else {
@@ -141,10 +141,10 @@ struct TodayView: View {
                     // Bottom Quick Move Promo
                     HStack(spacing: 12) {
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("A quick move. A little more time.")
+                            Text("Exercise to earn screen time.")
                                 .font(.system(size: 15, weight: .bold))
                                 .foregroundStyle(Color.movoDark)
-                            Text("Complete 20 squats to earn 10 extra minutes for your limited apps.")
+                            Text("Complete 20 squats to earn 10 extra minutes for your apps.")
                                 .font(.system(size: 12))
                                 .foregroundStyle(.secondary)
                         }
